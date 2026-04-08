@@ -1,0 +1,22 @@
+{
+  "dataset": "disney",
+  "best_value": 0.5240112994350282,
+  "best_params": {
+    "gadnr_hidden": 112,
+    "sample_size": 20,
+    "encoder": "SAGE",
+    "cle_hidden1": 448,
+    "cle_hidden2": 1024,
+    "cle_hidden3": 128,
+    "epochs": 125,
+    "batch_size": 64,
+    "lamda1": 0.30000000000000004,
+    "lamda2": 0.2,
+    "normalize_method": "running_average",
+    "score_norm_method": "rank",
+    "normalize_loss": true,
+    "normalize_scores": true
+  },
+  "n_trials": 50,
+  "study_name": "gadnr_cle_tuning_disney_20260109_200020"
+}

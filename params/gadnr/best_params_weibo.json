@@ -1,0 +1,22 @@
+{
+  "dataset": "weibo",
+  "best_value": 0.9097785650575119,
+  "best_params": {
+    "gadnr_hidden": 96,
+    "sample_size": 15,
+    "encoder": "GCN",
+    "cle_hidden1": 384,
+    "cle_hidden2": 512,
+    "cle_hidden3": 256,
+    "epochs": 100,
+    "batch_size": 32,
+    "lamda1": 0.8,
+    "lamda2": 0.30000000000000004,
+    "normalize_method": "exponential_moving_average",
+    "score_norm_method": "min_max",
+    "normalize_loss": true,
+    "normalize_scores": true
+  },
+  "n_trials": 50,
+  "study_name": "gadnr_cle_tuning_weibo_20260109_200358"
+}

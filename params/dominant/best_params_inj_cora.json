@@ -1,0 +1,23 @@
+{
+  "dataset": "inj_cora",
+  "best_value": 0.8436502565837704,
+  "best_params": {
+    "ae_hidden": 128,
+    "cle_hidden1": 256,
+    "cle_hidden2": 256,
+    "cle_hidden3": 448,
+    "cle_lr": 0.00017854334231227429,
+    "cle_weight_decay": 5.869905442932907e-05,
+    "cle_T": 500,
+    "epochs": 150,
+    "batch_size": 128,
+    "lamda1": 0.09,
+    "lamda2": 0.1,
+    "normalize_method": "exponential_moving_average",
+    "score_norm_method": "min_max",
+    "normalize_loss": false,
+    "normalize_scores": true
+  },
+  "n_trials": 55,
+  "study_name": "anomalydae_cle_tuning_inj_cora_20260111_195538"
+}

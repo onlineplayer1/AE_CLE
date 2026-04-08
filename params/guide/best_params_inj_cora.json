@@ -1,0 +1,25 @@
+{
+  "dataset": "inj_cora",
+  "best_value": 0.8879151863756838,
+  "best_params": {
+    "guide_hidden_a": 80,
+    "guide_hidden_s": 6,
+    "guide_num_layers": 5,
+    "guide_dropout": 0.0,
+    "guide_alpha": 0.4,
+    "cle_hidden1": 192,
+    "cle_hidden2": 640,
+    "cle_hidden3": 512,
+    "epochs": 200,
+    "batch_size": 128,
+    "lamda1": 0.2,
+    "lamda2": 0.30000000000000004,
+    "normalize_method": "exponential_moving_average",
+    "score_norm_method": "rank",
+    "normalize_loss": true,
+    "normalize_scores": true,
+    "use_complex_motif": false
+  },
+  "n_trials": 50,
+  "study_name": "guide_cle_tuning_inj_cora_20260114_114752"
+}

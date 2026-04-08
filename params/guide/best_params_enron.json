@@ -1,0 +1,25 @@
+{
+  "dataset": "enron",
+  "best_value": 0.6806401537551745,
+  "best_params": {
+    "guide_hidden_a": 32,
+    "guide_hidden_s": 4,
+    "guide_num_layers": 4,
+    "guide_dropout": 0.0,
+    "guide_alpha": 0.3,
+    "cle_hidden1": 256,
+    "cle_hidden2": 384,
+    "cle_hidden3": 320,
+    "epochs": 150,
+    "batch_size": 64,
+    "lamda1": 0.5,
+    "lamda2": 0.9,
+    "normalize_method": "min_max",
+    "score_norm_method": "z_score",
+    "normalize_loss": false,
+    "normalize_scores": false,
+    "use_complex_motif": null
+  },
+  "n_trials": 50,
+  "study_name": "guide_cle_tuning_enron_20260114_113313"
+}

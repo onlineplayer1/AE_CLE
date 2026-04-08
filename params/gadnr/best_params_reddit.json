@@ -1,0 +1,22 @@
+{
+  "dataset": "reddit",
+  "best_value": 0.5626553578982797,
+  "best_params": {
+    "gadnr_hidden": 80,
+    "sample_size": 5,
+    "encoder": "GCN",
+    "cle_hidden1": 384,
+    "cle_hidden2": 1024,
+    "cle_hidden3": 128,
+    "epochs": 75,
+    "batch_size": 32,
+    "lamda1": 0.4,
+    "lamda2": 0.4,
+    "normalize_method": "running_average",
+    "score_norm_method": "rank",
+    "normalize_loss": false,
+    "normalize_scores": true
+  },
+  "n_trials": 30,
+  "study_name": "gadnr_cle_tuning_reddit_20260109_214350"
+}

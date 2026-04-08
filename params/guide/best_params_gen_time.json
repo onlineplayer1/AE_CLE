@@ -1,0 +1,25 @@
+{
+  "dataset": "gen_time",
+  "best_value": 0.8068163283946268,
+  "best_params": {
+    "guide_hidden_a": 32,
+    "guide_hidden_s": 6,
+    "guide_num_layers": 5,
+    "guide_dropout": 0.1,
+    "guide_alpha": 0.6000000000000001,
+    "cle_hidden1": 320,
+    "cle_hidden2": 1024,
+    "cle_hidden3": 320,
+    "epochs": 75,
+    "batch_size": 96,
+    "lamda1": 0.6,
+    "lamda2": 0.4,
+    "normalize_method": "running_average",
+    "score_norm_method": "rank",
+    "normalize_loss": true,
+    "normalize_scores": false,
+    "use_complex_motif": false
+  },
+  "n_trials": 50,
+  "study_name": "guide_cle_tuning_gen_time_20260114_130913"
+}

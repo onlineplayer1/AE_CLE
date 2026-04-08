@@ -1,0 +1,24 @@
+{
+  "dataset": "gen_500",
+  "best_value": 0.7540625000000001,
+  "best_params": {
+    "ae_hidden": 72,
+    "cle_hidden1": 320,
+    "cle_hidden2": 384,
+    "cle_hidden3": 384,
+    "ae_dropout": 0.4,
+    "epochs": 50,
+    "batch_size": 64,
+    "lr": 0.00091639101609854,
+    "weight_decay": 6.897715612221848e-05,
+    "lamda1": 0.2,
+    "lamda2": 0.8,
+    "optimizer": "adam",
+    "normalize_method": "running_average",
+    "score_norm_method": "z_score",
+    "normalize_loss": false,
+    "normalize_scores": true
+  },
+  "n_trials": 50,
+  "study_name": "anomalydae_cle_tuning_gen_500_20251231_155408"
+}

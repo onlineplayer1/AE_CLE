@@ -1,0 +1,25 @@
+{
+  "dataset": "books",
+  "best_value": 0.6479188078108942,
+  "best_params": {
+    "guide_hidden_a": 80,
+    "guide_hidden_s": 2,
+    "guide_num_layers": 6,
+    "guide_dropout": 0.3,
+    "guide_alpha": 0.5,
+    "cle_hidden1": 128,
+    "cle_hidden2": 896,
+    "cle_hidden3": 448,
+    "epochs": 175,
+    "batch_size": 64,
+    "lamda1": 0.9,
+    "lamda2": 0.8,
+    "normalize_method": "running_average",
+    "score_norm_method": "min_max",
+    "normalize_loss": true,
+    "normalize_scores": true,
+    "use_complex_motif": true
+  },
+  "n_trials": 100,
+  "study_name": "guide_cle_tuning_books_20260113_213543"
+}

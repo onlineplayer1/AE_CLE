@@ -1,0 +1,26 @@
+{
+  "dataset": "gen_time",
+  "best_value": 0.7909302644197835,
+  "best_params": {
+    "done_hidden": 128,
+    "done_num_layers": 4,
+    "done_dropout": 0.4,
+    "done_act": "relu",
+    "cle_hidden1": 512,
+    "cle_hidden2": 896,
+    "cle_hidden3": 384,
+    "cle_lr": 7.201619936757369e-05,
+    "cle_weight_decay": 0.00012051068437476252,
+    "cle_T": 500,
+    "epochs": 150,
+    "batch_size": 128,
+    "lamda1": 0.22,
+    "lamda2": 0.27,
+    "normalize_method": "running_average",
+    "score_norm_method": "min_max",
+    "normalize_loss": true,
+    "normalize_scores": true
+  },
+  "n_trials": 50,
+  "study_name": "anomalydae_cle_tuning_gen_time_20260113_164302"
+}

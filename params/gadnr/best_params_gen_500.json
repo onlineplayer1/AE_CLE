@@ -1,0 +1,22 @@
+{
+  "dataset": "gen_500",
+  "best_value": 0.841875,
+  "best_params": {
+    "gadnr_hidden": 80,
+    "sample_size": 5,
+    "encoder": "GIN",
+    "cle_hidden1": 384,
+    "cle_hidden2": 640,
+    "cle_hidden3": 192,
+    "epochs": 50,
+    "batch_size": 96,
+    "lamda1": 0.2,
+    "lamda2": 0.2,
+    "normalize_method": "min_max",
+    "score_norm_method": "min_max",
+    "normalize_loss": false,
+    "normalize_scores": false
+  },
+  "n_trials": 100,
+  "study_name": "gadnr_cle_tuning_gen_500_20260110_214513"
+}

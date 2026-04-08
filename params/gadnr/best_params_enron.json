@@ -1,0 +1,22 @@
+{
+  "dataset": "enron",
+  "best_value": 0.784994086339444,
+  "best_params": {
+    "gadnr_hidden": 96,
+    "sample_size": 10,
+    "encoder": "SAGE",
+    "cle_hidden1": 192,
+    "cle_hidden2": 384,
+    "cle_hidden3": 192,
+    "epochs": 200,
+    "batch_size": 32,
+    "lamda1": 0.7000000000000001,
+    "lamda2": 1.0,
+    "normalize_method": "z_score",
+    "score_norm_method": "min_max",
+    "normalize_loss": false,
+    "normalize_scores": true
+  },
+  "n_trials": 60,
+  "study_name": "gadnr_cle_tuning_enron_20260110_190443"
+}

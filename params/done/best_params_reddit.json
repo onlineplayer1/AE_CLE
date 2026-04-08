@@ -1,0 +1,26 @@
+{
+  "dataset": "reddit",
+  "best_value": 0.5955846706335359,
+  "best_params": {
+    "done_hidden": 32,
+    "done_num_layers": 2,
+    "done_dropout": 0.0,
+    "done_act": "sigmoid",
+    "cle_hidden1": 256,
+    "cle_hidden2": 512,
+    "cle_hidden3": 192,
+    "cle_lr": 0.00021467546944590717,
+    "cle_weight_decay": 0.00030360322629674203,
+    "cle_T": 200,
+    "epochs": 250,
+    "batch_size": 64,
+    "lamda1": 0.03,
+    "lamda2": 0.29000000000000004,
+    "normalize_method": "exponential_moving_average",
+    "score_norm_method": "z_score",
+    "normalize_loss": true,
+    "normalize_scores": true
+  },
+  "n_trials": 60,
+  "study_name": "anomalydae_cle_tuning_reddit_20260113_112039"
+}

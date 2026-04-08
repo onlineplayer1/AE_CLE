@@ -1,0 +1,24 @@
+{
+  "dataset": "weibo",
+  "best_value": 0.9323138513786574,
+  "best_params": {
+    "ae_hidden": 80,
+    "cle_hidden1": 384,
+    "cle_hidden2": 512,
+    "cle_hidden3": 320,
+    "ae_dropout": 0.5,
+    "epochs": 200,
+    "batch_size": 128,
+    "lr": 0.004647904360363974,
+    "weight_decay": 0.00022441331391987566,
+    "lamda1": 0.9,
+    "lamda2": 0.8,
+    "optimizer": "sgd",
+    "normalize_method": "running_average",
+    "score_norm_method": "z_score",
+    "normalize_loss": false,
+    "normalize_scores": true
+  },
+  "n_trials": 50,
+  "study_name": "anomalydae_cle_tuning_weibo_20251231_150320"
+}

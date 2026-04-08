@@ -1,0 +1,20 @@
+{
+  "dataset": "gen_5000",
+  "best_value": 0.7937600401606426,
+  "best_params": {
+    "ae_hidden": 112,
+    "cle_hidden1": 128,
+    "cle_hidden2": 512,
+    "cle_hidden3": 128,
+    "epochs": 175,
+    "batch_size": 96,
+    "lamda1": 0.30000000000000004,
+    "lamda2": 0.1,
+    "normalize_method": "min_max",
+    "score_norm_method": "min_max",
+    "normalize_loss": false,
+    "normalize_scores": false
+  },
+  "n_trials": 50,
+  "study_name": "anomalydae_cle_tuning_gen_5000_20260105_164058"
+}

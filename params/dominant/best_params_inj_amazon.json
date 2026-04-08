@@ -1,0 +1,23 @@
+{
+  "dataset": "inj_amazon",
+  "best_value": 0.7665601221418252,
+  "best_params": {
+    "ae_hidden": 96,
+    "cle_hidden1": 128,
+    "cle_hidden2": 256,
+    "cle_hidden3": 256,
+    "cle_lr": 0.0008540204006216471,
+    "cle_weight_decay": 6.067766018919533e-05,
+    "cle_T": 500,
+    "epochs": 200,
+    "batch_size": 32,
+    "lamda1": 0.09999999999999999,
+    "lamda2": 0.63,
+    "normalize_method": "min_max",
+    "score_norm_method": "min_max",
+    "normalize_loss": false,
+    "normalize_scores": true
+  },
+  "n_trials": 55,
+  "study_name": "anomalydae_cle_tuning_inj_amazon_20260111_200023"
+}

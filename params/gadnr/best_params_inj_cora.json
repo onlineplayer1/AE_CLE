@@ -1,0 +1,22 @@
+{
+  "dataset": "inj_cora",
+  "best_value": 0.7113883719618791,
+  "best_params": {
+    "gadnr_hidden": 128,
+    "sample_size": 15,
+    "encoder": "GIN",
+    "cle_hidden1": 256,
+    "cle_hidden2": 512,
+    "cle_hidden3": 448,
+    "epochs": 150,
+    "batch_size": 64,
+    "lamda1": 0.2,
+    "lamda2": 0.1,
+    "normalize_method": "running_average",
+    "score_norm_method": "min_max",
+    "normalize_loss": true,
+    "normalize_scores": true
+  },
+  "n_trials": 100,
+  "study_name": "gadnr_cle_tuning_inj_cora_20260110_194649"
+}
