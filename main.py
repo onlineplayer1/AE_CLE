@@ -178,10 +178,8 @@ def run_experiment(model_name, dataset, params=None, n_runs=10, seed=42,
     auc_scores = np.array(auc_scores)
     sorted_scores = np.sort(auc_scores)
     
-    if len(sorted_scores) > 2:
-        filtered_scores = sorted_scores[2:]
-    else:
-        filtered_scores = sorted_scores
+
+    filtered_scores = sorted_scores
     
     mean_auc = np.mean(filtered_scores)
     std_auc = np.std(filtered_scores)
