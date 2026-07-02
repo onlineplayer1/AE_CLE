@@ -55,7 +55,7 @@ python run.py --dataset weibo --base_model dominant --auxiliary_node --use_best_
 # Optimize for AUPRC instead of AUC
 python run.py --dataset weibo --base_model dominant --ae_only --use_best_params --metric auprc --n_runs 10
 python run.py --dataset weibo --base_model dominant --auxiliary_node --use_best_params --metric auprc --n_runs 10
-
+```
 
 ### Key Arguments
 
