@@ -60,17 +60,17 @@ python run.py --dataset weibo --base_model dominant --auxiliary_node --use_best_
 ### Key Arguments
 
 | Flag | Default | Description |
-|------|---------|-------------|
-| `--dataset` | `disney` | Dataset name (weibo, reddit, disney, books, enron, inj_cora, etc.) |
-| `--base_model` | **(required)** | `dominant`, `anomalydae`, `guide`, `gadnr`, or `done` |
-| `--ae_only` | `False` | Train AE only (no CLE) |
-| `--auxiliary_node` | `False` | Enable auxiliary node ensemble |
-| `--use_best_params` | `False` | Load optimized params from Optuna results |
-| `--metric` | `auc` | `auc` or `auprc` (switches params directory) |
-| `--n_runs` | `10` | Number of runs for averaging |
-| `--seed` | `42` | Base random seed |
-| `--no_parallel` | `False` | Force single-GPU sequential mode |
-| `--no_use_embedding_transform` | `False` | Disable Procrustes alignment |
+| --- | --- | --- |
+| `--dataset` | `disney` | Dataset name (weibo, reddit, disney, books, enron, etc.) |
+| `--base_model` | required | `dominant` / `anomalydae` / `guide` / `gadnr` / `done` |
+| `--ae_only` | false | Train AE only (no CLE) |
+| `--auxiliary_node` | false | Enable auxiliary node ensemble |
+| `--use_best_params` | false | Load optimized params from Optuna results |
+| `--metric` | `auc` | `auc` or `auprc` |
+| `--n_runs` | 10 | Number of runs for averaging |
+| `--seed` | 42 | Base random seed |
+| `--no_parallel` | false | Force single-GPU sequential mode |
+| `--no_use_embedding_transform` | false | Disable Procrustes alignment |
 
 
 
