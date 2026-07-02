@@ -25,7 +25,6 @@ pip install torch torch_geometric pygod optuna scikit-learn networkx scipy numpy
 ```
 ae_cle/
 ├── run.py                  # Main entry point
-├── tune.py                 # Optuna hyperparameter tuning
 ├── README.md
 └── ae_cle/
     ├── __init__.py          # Package exports
