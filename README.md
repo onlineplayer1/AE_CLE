@@ -1,4 +1,4 @@
-# AE + CLE: Joint Graph Anomaly Detection with Auxiliary Node Ensemble
+# Joint Graph Anomaly Detection with Auxiliary Node Ensemble
 
 Unsupervised node-level anomaly detection on attributed graphs via joint training of
 Autoencoder + Corruption Level Estimator (CLE), with optional auxiliary node
@@ -98,7 +98,6 @@ AE-only → AE+CLE → AE+CLE + Aux Ensemble
 ## Reproducibility Notes
 
 - Default seeds are deterministic (`torch.manual_seed` + `np.random.seed`).
-- GAD-NR uses `torch.randn_like` on GPU; `torch.cuda.manual_seed` is set for reproducibility.
 - Procrustes alignment (`use_embedding_transform`) can be disabled via `--no_use_embedding_transform` for improved stability.
 
 ## Dependencies
