@@ -4,7 +4,7 @@ Unsupervised node-level anomaly detection on attributed graphs via joint trainin
 Autoencoder + Corruption Level Estimator (CLE), with optional auxiliary node
 ensemble for diversity.
 
-## Supported Base Models
+
 
 | Model | Paper | Architecture |
 |-------|-------|-------------|
