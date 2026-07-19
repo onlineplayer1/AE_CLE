@@ -140,7 +140,8 @@ def _train_single_joint_done(data, epochs=100, done_hidden=64, done_num_layers=4
                               lamda1=0.5, lamda2=0.5,
                               normalize_loss=True, normalize_method='exponential_moving_average',
                               normalize_scores=True, score_norm_method='min_max',
-                              use_embedding_transform=True, joint_training=True, verbose=True):
+                              use_embedding_transform=True, joint_training=True, verbose=True,
+                              use_adaptive_prior=True):
     """Train a single DONE(+CLE) model on given graph.
 
     DONE uses dense adjacency s = to_dense_adj(edge_index) as structural input.
@@ -318,7 +319,8 @@ def train_joint_done_cle(data, epochs=100, done_hidden=64, done_num_layers=4,
                           normalize_loss=True, normalize_method='exponential_moving_average',
                           lamda1=0.5, lamda2=0.5, normalize_scores=True,
                           score_norm_method='min_max', joint_training=True,
-                          dataset_name='unknown', use_embedding_transform=True):
+                          dataset_name='unknown', use_embedding_transform=True,
+                          use_adaptive_prior=True):
     """Joint training of DONE + CLE models.
 
     Parameters
