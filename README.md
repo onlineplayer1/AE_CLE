@@ -1,4 +1,4 @@
-# Joint Graph Anomaly Detection with Auxiliary Node Ensemble
+# CAGE: Corruption-Level Estimation with Auxiliary Graph Ensemble
 
 Unsupervised node-level anomaly detection on attributed graphs via joint training of
 Autoencoder + Corruption Level Estimator (CLE), with optional auxiliary node
