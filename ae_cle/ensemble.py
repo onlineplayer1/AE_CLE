@@ -71,7 +71,8 @@ def _train_one_aux_worker(task):
         verbose=False,  # quiet in parallel mode
         dropout=task['dropout'],
         lr_ae=task['lr_ae'],
-        struct_weight=task['struct_weight']
+        struct_weight=task['struct_weight'],
+        use_adaptive_prior=task.get('use_adaptive_prior', True)
     )
 
     combined_orig = combined_all[:n_orig]  # already numpy from _train_single_joint
@@ -102,7 +103,8 @@ def train_auxiliary_node_ensemble(data, n_models=10, n_aux_nodes=5,
                                    joint_training=True, verbose=True,
                                    agg_method='mean',
                                    dropout=0.3, lr_ae=5e-3, struct_weight=0.8,
-                                   parallel=True):
+                                   parallel=True,
+                                   use_adaptive_prior=True):
     """Auxiliary node ensemble: each model adds different synthetic anomaly nodes without modifying original graph.
 
     Parameters
@@ -190,6 +192,7 @@ def train_auxiliary_node_ensemble(data, n_models=10, n_aux_nodes=5,
                 'normalize_scores': normalize_scores,
                 'score_norm_method': score_norm_method,
                 'use_embedding_transform': use_embedding_transform,
+                'use_adaptive_prior': use_adaptive_prior,
                 'joint_training': joint_training,
                 'dropout': dropout, 'lr_ae': lr_ae,
                 'struct_weight': struct_weight,
@@ -249,6 +252,7 @@ def train_auxiliary_node_ensemble(data, n_models=10, n_aux_nodes=5,
                 score_norm_method=score_norm_method,
                 use_embedding_transform=use_embedding_transform,
                 joint_training=joint_training, verbose=verbose,
+                    use_adaptive_prior=use_adaptive_prior,
                 dropout=dropout, lr_ae=lr_ae, struct_weight=struct_weight
             )
 
@@ -377,7 +381,8 @@ def train_auxiliary_node_ensemble_anomalydae(data, n_models=10, n_aux_nodes=5,
                                               joint_training=True, verbose=True,
                                               agg_method='mean',
                                               lr_ae=5e-3,
-                                              parallel=True):
+                                              parallel=True,
+                                   use_adaptive_prior=True):
     """Auxiliary node ensemble using AnomalyDAE base model.
 
     Parallel to train_auxiliary_node_ensemble but uses AnomalyDAE.
@@ -482,6 +487,7 @@ def train_auxiliary_node_ensemble_anomalydae(data, n_models=10, n_aux_nodes=5,
                 'normalize_scores': normalize_scores,
                 'score_norm_method': score_norm_method,
                 'use_embedding_transform': use_embedding_transform,
+                'use_adaptive_prior': use_adaptive_prior,
                 'joint_training': joint_training,
             })
 
@@ -541,7 +547,8 @@ def train_auxiliary_node_ensemble_anomalydae(data, n_models=10, n_aux_nodes=5,
                 normalize_scores=normalize_scores,
                 score_norm_method=score_norm_method,
                 use_embedding_transform=use_embedding_transform,
-                joint_training=joint_training, verbose=verbose
+                joint_training=joint_training, verbose=verbose,
+                    use_adaptive_prior=use_adaptive_prior
             )
 
             combined_orig = combined_all[:n_orig]
@@ -673,7 +680,8 @@ def train_auxiliary_node_ensemble_guide(data, n_models=10, n_aux_nodes=5,
                                          joint_training=True, verbose=True,
                                          agg_method='mean',
                                          lr_ae=5e-3,
-                                         parallel=True):
+                                         parallel=True,
+                                   use_adaptive_prior=True):
     """Auxiliary node ensemble using GUIDE base model.
 
     Parallel to train_auxiliary_node_ensemble and
@@ -789,6 +797,7 @@ def train_auxiliary_node_ensemble_guide(data, n_models=10, n_aux_nodes=5,
                 'normalize_scores': normalize_scores,
                 'score_norm_method': score_norm_method,
                 'use_embedding_transform': use_embedding_transform,
+                'use_adaptive_prior': use_adaptive_prior,
                 'joint_training': joint_training,
             })
 
@@ -853,7 +862,8 @@ def train_auxiliary_node_ensemble_guide(data, n_models=10, n_aux_nodes=5,
                     normalize_scores=normalize_scores,
                     score_norm_method=score_norm_method,
                     use_embedding_transform=use_embedding_transform,
-                    joint_training=joint_training, verbose=verbose
+                    joint_training=joint_training, verbose=verbose,
+                    use_adaptive_prior=use_adaptive_prior
                 )
             except (RuntimeError, AttributeError) as e:
                 if verbose:
@@ -987,7 +997,8 @@ def train_auxiliary_node_ensemble_gadnr(data, n_models=10, n_aux_nodes=5,
                                          joint_training=True, verbose=True,
                                          agg_method='mean',
                                          lr_ae=5e-3,
-                                         parallel=True):
+                                         parallel=True,
+                                   use_adaptive_prior=True):
     """Auxiliary node ensemble using GAD-NR base model.
 
     Parallel to train_auxiliary_node_ensemble,
@@ -1098,6 +1109,7 @@ def train_auxiliary_node_ensemble_gadnr(data, n_models=10, n_aux_nodes=5,
                 'normalize_scores': normalize_scores,
                 'score_norm_method': score_norm_method,
                 'use_embedding_transform': use_embedding_transform,
+                'use_adaptive_prior': use_adaptive_prior,
                 'joint_training': joint_training,
             })
 
@@ -1159,7 +1171,8 @@ def train_auxiliary_node_ensemble_gadnr(data, n_models=10, n_aux_nodes=5,
                 normalize_scores=normalize_scores,
                 score_norm_method=score_norm_method,
                 use_embedding_transform=use_embedding_transform,
-                joint_training=joint_training, verbose=verbose
+                joint_training=joint_training, verbose=verbose,
+                    use_adaptive_prior=use_adaptive_prior
             )
 
             combined_orig = combined_all[:n_orig]
@@ -1287,7 +1300,8 @@ def train_auxiliary_node_ensemble_done(data, n_models=10, n_aux_nodes=5,
                                         joint_training=True, verbose=True,
                                         agg_method='mean',
                                         lr_ae=5e-3,
-                                        parallel=True):
+                                        parallel=True,
+                                   use_adaptive_prior=True):
     """Auxiliary node ensemble using DONE base model.
 
     Uses DONE-specific params: done_hidden, done_num_layers, done_dropout.
@@ -1380,6 +1394,7 @@ def train_auxiliary_node_ensemble_done(data, n_models=10, n_aux_nodes=5,
                 'normalize_scores': normalize_scores,
                 'score_norm_method': score_norm_method,
                 'use_embedding_transform': use_embedding_transform,
+                'use_adaptive_prior': use_adaptive_prior,
                 'joint_training': joint_training,
             })
 
@@ -1440,7 +1455,8 @@ def train_auxiliary_node_ensemble_done(data, n_models=10, n_aux_nodes=5,
                 normalize_scores=normalize_scores,
                 score_norm_method=score_norm_method,
                 use_embedding_transform=use_embedding_transform,
-                joint_training=joint_training, verbose=verbose
+                joint_training=joint_training, verbose=verbose,
+                    use_adaptive_prior=use_adaptive_prior
             )
 
             combined_orig = combined_all[:n_orig]
