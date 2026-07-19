@@ -78,8 +78,10 @@ def main():
                         help='Force sequential execution even if multiple GPUs available')
     parser.add_argument('--n_runs', type=int, default=10, help='Number of runs for averaging results (ignored in --bagging mode)')
     parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducibility')
-    parser.add_argument('--no_use_embedding_transform', dest='use_embedding_transform', action='store_false', default=True,
+    parser.add_argument('--no_use_embedding_transform', dest='use_embedding_transform', action='store_false', default=False,
                         help='Disable embedding transform (center+normalize+Procrustes+sign_fix)')
+    parser.add_argument('--adaptive_prior', dest='use_adaptive_prior', action='store_true', default=False,
+                        help='Use adaptive covariance prior instead of standard Gaussian noise in CLE')
 
     args = parser.parse_args()
 
@@ -149,6 +151,7 @@ def main():
                 'normalize_method': 'exponential_moving_average',
                 'normalize_scores': True,
                 'score_norm_method': 'min_max',
+                'use_adaptive_prior': args.use_adaptive_prior,
                 'use_embedding_transform': args.use_embedding_transform,
                 'agg_method': 'mean',
                 'lr_ae': 5e-3,
@@ -174,6 +177,7 @@ def main():
                 'normalize_method': 'exponential_moving_average',
                 'normalize_scores': True,
                 'score_norm_method': 'min_max',
+                'use_adaptive_prior': args.use_adaptive_prior,
                 'use_embedding_transform': args.use_embedding_transform,
                 'agg_method': 'mean',
                 'lr_ae': 5e-3,
@@ -197,6 +201,7 @@ def main():
                 'normalize_method': 'exponential_moving_average',
                 'normalize_scores': True,
                 'score_norm_method': 'min_max',
+                'use_adaptive_prior': args.use_adaptive_prior,
                 'use_embedding_transform': args.use_embedding_transform,
                 'agg_method': 'mean',
                 'lr_ae': 5e-3,
@@ -220,6 +225,7 @@ def main():
                 'normalize_method': 'exponential_moving_average',
                 'normalize_scores': True,
                 'score_norm_method': 'min_max',
+                'use_adaptive_prior': args.use_adaptive_prior,
                 'use_embedding_transform': args.use_embedding_transform,
                 'agg_method': 'mean',
                 'lr_ae': 5e-3,
@@ -241,6 +247,7 @@ def main():
                 'normalize_method': 'exponential_moving_average',
                 'normalize_scores': True,
                 'score_norm_method': 'min_max',
+                'use_adaptive_prior': args.use_adaptive_prior,
                 'use_embedding_transform': args.use_embedding_transform,
                 'agg_method': 'mean',
                 'dropout': 0.3,
@@ -332,6 +339,7 @@ def main():
                     normalize_scores=aux_params.get('normalize_scores', True),
                     score_norm_method=aux_params.get('score_norm_method', 'min_max'),
                     use_embedding_transform=aux_params.get('use_embedding_transform', True),
+                    use_adaptive_prior=aux_params.get("use_adaptive_prior", True),
                     joint_training=aux_joint,
                     agg_method=aux_params.get('agg_method', 'mean'),
                     lr_ae=aux_params.get('lr_ae', 5e-3),
@@ -362,6 +370,7 @@ def main():
                     normalize_scores=aux_params.get('normalize_scores', True),
                     score_norm_method=aux_params.get('score_norm_method', 'min_max'),
                     use_embedding_transform=aux_params.get('use_embedding_transform', True),
+                    use_adaptive_prior=aux_params.get("use_adaptive_prior", True),
                     joint_training=aux_joint,
                     agg_method=aux_params.get('agg_method', 'mean'),
                     lr_ae=aux_params.get('lr_ae', 5e-3),
@@ -390,6 +399,7 @@ def main():
                     normalize_scores=aux_params.get('normalize_scores', True),
                     score_norm_method=aux_params.get('score_norm_method', 'min_max'),
                     use_embedding_transform=aux_params.get('use_embedding_transform', True),
+                    use_adaptive_prior=aux_params.get("use_adaptive_prior", True),
                     joint_training=aux_joint,
                     agg_method=aux_params.get('agg_method', 'mean'),
                     lr_ae=aux_params.get('lr_ae', 5e-3),
@@ -418,6 +428,7 @@ def main():
                     normalize_scores=aux_params.get('normalize_scores', True),
                     score_norm_method=aux_params.get('score_norm_method', 'min_max'),
                     use_embedding_transform=aux_params.get('use_embedding_transform', True),
+                    use_adaptive_prior=aux_params.get("use_adaptive_prior", True),
                     joint_training=aux_joint,
                     agg_method=aux_params.get('agg_method', 'mean'),
                     lr_ae=aux_params.get('lr_ae', 5e-3),
@@ -444,6 +455,7 @@ def main():
                     normalize_scores=aux_params.get('normalize_scores', True),
                     score_norm_method=aux_params.get('score_norm_method', 'min_max'),
                     use_embedding_transform=aux_params.get('use_embedding_transform', True),
+                    use_adaptive_prior=aux_params.get("use_adaptive_prior", True),
                     joint_training=aux_joint,
                     agg_method=aux_params.get('agg_method', 'mean'),
                     dropout=aux_params.get('dropout', 0.3),
@@ -651,6 +663,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -670,6 +683,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -693,6 +707,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -715,6 +730,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -736,6 +752,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -756,6 +773,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -777,6 +795,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -797,6 +816,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -816,6 +836,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
@@ -834,6 +855,7 @@ def main():
                     score_norm_method=params['score_norm_method'],
                     joint_training=args.joint_training,
                     dataset_name=args.dataset,
+                    use_adaptive_prior=args.use_adaptive_prior,
                     use_embedding_transform=args.use_embedding_transform
                 )
                 final_auc = result['auc']
