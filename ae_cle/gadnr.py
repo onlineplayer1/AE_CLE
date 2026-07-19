@@ -303,7 +303,8 @@ def _train_single_joint_gadnr(data, epochs=100, gadnr_hidden=64, sample_size=10,
                                lamda1=0.5, lamda2=0.5,
                                normalize_loss=True, normalize_method='exponential_moving_average',
                                normalize_scores=True, score_norm_method='min_max',
-                               use_embedding_transform=True, joint_training=True, verbose=True):
+                               use_embedding_transform=True, joint_training=True, verbose=True,
+                               use_adaptive_prior=True):
     """Train a single GAD-NR(+CLE) model on given graph.
 
     Parallel to _train_single_joint (DOMINANT), _train_single_joint_anomalydae,
@@ -394,9 +395,10 @@ def _train_single_joint_gadnr(data, epochs=100, gadnr_hidden=64, sample_size=10,
         ae_model.train()
 
         # Fit noise flow on reference embedding
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
         if normalize_loss:
             loss_normalizer = LossNormalizer(method=normalize_method)
@@ -521,7 +523,8 @@ def train_joint_gadnr_cle(data, epochs=100, gadnr_hidden=64, sample_size=10,
                            normalize_loss=True, normalize_method='exponential_moving_average',
                            lamda1=0.5, lamda2=0.5, normalize_scores=True,
                            score_norm_method='min_max', joint_training=True,
-                           dataset_name='unknown', use_embedding_transform=True):
+                           dataset_name='unknown', use_embedding_transform=True,
+                           use_adaptive_prior=True):
     """Joint training of GAD-NR + CLE models.
 
     Parallel to train_joint_ae_cle (DOMINANT), train_joint_anomalydae_cle,
@@ -632,9 +635,10 @@ def train_joint_gadnr_cle(data, epochs=100, gadnr_hidden=64, sample_size=10,
                 emb_ref = l1
         ae_model.train()
 
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
     # Training loop
     epoch_times = []
