@@ -195,7 +195,8 @@ def _train_single_joint_anomalydae(data, epochs=100, ae_hidden=64, ae_dropout=0.
                                     lamda1=0.5, lamda2=0.5,
                                     normalize_loss=True, normalize_method='exponential_moving_average',
                                     normalize_scores=True, score_norm_method='min_max',
-                                    use_embedding_transform=True, joint_training=True, verbose=True):
+                                    use_embedding_transform=True, joint_training=True, verbose=True,
+                                    use_adaptive_prior=True):
     """Train a single AnomalyDAE(+CLE) model on given graph.
 
     Parallel to _train_single_joint in training.py, but uses AnomalyDAE instead of DOMINANT.
@@ -274,9 +275,10 @@ def _train_single_joint_anomalydae(data, epochs=100, ae_hidden=64, ae_dropout=0.
         ae_model.train()
 
         # Fit noise flow on reference embedding
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
         if normalize_loss:
             loss_normalizer = LossNormalizer(method=normalize_method)
@@ -377,7 +379,8 @@ def train_joint_anomalydae_cle(data, epochs=100, ae_hidden=64, ae_dropout=0.3,
                                 normalize_loss=True, normalize_method='exponential_moving_average',
                                 lamda1=0.5, lamda2=0.5, normalize_scores=True,
                                 score_norm_method='min_max', joint_training=True,
-                                dataset_name='unknown', use_embedding_transform=True):
+                                dataset_name='unknown', use_embedding_transform=True,
+                           use_adaptive_prior=True):
     """Joint training of AnomalyDAE + CLE models.
 
     Parallel to train_joint_ae_cle in training.py.
@@ -485,9 +488,10 @@ def train_joint_anomalydae_cle(data, epochs=100, ae_hidden=64, ae_dropout=0.3,
                 emb_ref = emb0
         ae_model.train()
 
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
     # Training loop
     epoch_times = []
