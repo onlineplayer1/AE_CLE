@@ -182,7 +182,8 @@ def _train_single_joint_guide(data, epochs=100, guide_hidden_a=64, guide_hidden_
                                lamda1=0.5, lamda2=0.5,
                                normalize_loss=True, normalize_method='exponential_moving_average',
                                normalize_scores=True, score_norm_method='min_max',
-                               use_embedding_transform=True, joint_training=True, verbose=True):
+                               use_embedding_transform=True, joint_training=True, verbose=True,
+                               use_adaptive_prior=True):
     """Train a single GUIDE(+CLE) model on given graph.
 
     Parallel to _train_single_joint (DOMINANT) and _train_single_joint_anomalydae.
@@ -272,9 +273,10 @@ def _train_single_joint_guide(data, epochs=100, guide_hidden_a=64, guide_hidden_
         ae_model.train()
 
         # Fit noise flow on reference embedding
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
         if normalize_loss:
             loss_normalizer = LossNormalizer(method=normalize_method)
@@ -449,7 +451,8 @@ def train_joint_guide_cle(data, epochs=100, guide_hidden_a=64, guide_hidden_s=4,
                            normalize_loss=True, normalize_method='exponential_moving_average',
                            lamda1=0.5, lamda2=0.5, normalize_scores=True,
                            score_norm_method='min_max', joint_training=True,
-                           dataset_name='unknown', use_embedding_transform=True):
+                           dataset_name='unknown', use_embedding_transform=True,
+                           use_adaptive_prior=True):
     """Joint training of GUIDE + CLE models.
 
     Parallel to train_joint_ae_cle (DOMINANT) and train_joint_anomalydae_cle.
@@ -560,9 +563,10 @@ def train_joint_guide_cle(data, epochs=100, guide_hidden_a=64, guide_hidden_s=4,
                 emb_ref = x0
         ae_model.train()
 
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
     # Training loop
     nan_count = 0
