@@ -139,7 +139,8 @@ def _train_single_joint(data, epochs=100, ae_hidden=64, cle_hidden=None,
                         normalize_scores=True, score_norm_method='min_max',
                         use_embedding_transform=True, joint_training=True, verbose=True,
                         eval_x=None, target_x=None,
-                        dropout=0.3, lr_ae=5e-3, struct_weight=0.8):
+                        dropout=0.3, lr_ae=5e-3, struct_weight=0.8,
+                        use_adaptive_prior=True):
     """Train a single DOMINANT(+CLE) model on given graph.
 
     Parameters
@@ -214,9 +215,10 @@ def _train_single_joint(data, epochs=100, ae_hidden=64, cle_hidden=None,
                 emb_ref = emb0
         ae_model.train()
 
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
         if normalize_loss:
             loss_normalizer = LossNormalizer(method=normalize_method)
@@ -316,7 +318,8 @@ def train_joint_ae_cle(data, epochs=100, ae_hidden=64, cle_hidden=None,
                        lamda1=0.5, lamda2=0.5, normalize_scores=True,
                        score_norm_method='min_max', joint_training=True,
                        dataset_name='unknown', use_embedding_transform=True,
-                       dropout=0.3, lr_ae=5e-3, struct_weight=0.8):
+                       dropout=0.3, lr_ae=5e-3, struct_weight=0.8,
+                       use_adaptive_prior=True):
     """Joint training of DOMINANT + CLE models.
 
     Parameters
@@ -415,9 +418,10 @@ def train_joint_ae_cle(data, epochs=100, ae_hidden=64, cle_hidden=None,
                 emb_ref = emb0
         ae_model.train()
 
-        flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
-        flow.fit(emb_ref)
-        cle_model.noise_flow = flow.eval()
+        if use_adaptive_prior:
+            flow = LinearFlowNoise(dim=emb_ref.shape[1], ridge=1e-3, device=device, dtype=emb_ref.dtype)
+            flow.fit(emb_ref)
+            cle_model.noise_flow = flow.eval()
 
     # Training loop
     epoch_times = []
