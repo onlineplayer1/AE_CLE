@@ -23,7 +23,7 @@ pip install torch torch_geometric pygod optuna scikit-learn networkx scipy numpy
 ## Project Structure
 
 ```
-ae_cle/
+CAGE-AE_CLE/
 ├── run.py                  # Main entry point
 ├── README.md
 └── ae_cle/
